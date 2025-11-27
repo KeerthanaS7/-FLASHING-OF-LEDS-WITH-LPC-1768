@@ -42,18 +42,47 @@ Header:
 Delay.h, stdutils.h, gpioi.h
 
 # PIN DIAGRAM :
- 
+ <img width="1023" height="625" alt="image" src="https://github.com/user-attachments/assets/67a191f1-dd11-48d7-8eff-adde5630fb29" />
+
 
 # CIRCUIT DIAGRAM:
  
- 
+ <img width="1011" height="514" alt="image" src="https://github.com/user-attachments/assets/dea9d01d-2c48-440b-98db-4d39e563d0b1" />
+
 # PROGRAM:
+~~~
+#include <lpc17xx.h>
+#include "delay.h"      
+#include "gpio.h"
 
+#define LED P1_29        
 
+/* start the main program */
+int main()
+{
+    SystemInit();                         
+    GPIO_PinFunction(LED,PINSEL_FUNC_0);   
+    GPIO_PinDirection(LED,OUTPUT);        
+    GPIO_PinWrite(LED,LOW);
+
+    while(1)
+    {
+        /* Turn On all the leds and wait for 100ms */
+        GPIO_PinWrite(LED,HIGH);           
+        DELAY_ms(100);
+
+        GPIO_PinWrite(LED,LOW);           
+        DELAY_ms(100);
+    }
+}
+~~~
  
 # Output:
+<img width="745" height="755" alt="image" src="https://github.com/user-attachments/assets/e2211680-99d6-4b8c-86d6-b53fa9744de0" />
 
 
+## RESULT : 
+The experiment on toggling an LED with the ARM LPC1768 microcontroller was successfully performed. The LED flashed ON and OFF at regular intervals as programmed, confirming correct interfacing and functioning of the GPIO operations. The code compiled without errors, and all hardware connections were verified to work as expected. The experiment demonstrated the basic use of GPIO for output and timing control using software delays.
 
 
 
